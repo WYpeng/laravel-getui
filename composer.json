@@ -1,5 +1,5 @@
 {
-    "name": "shaozeming/laravel-getui",
+    "name": "WYpeng/laravel-getui",
     "description": "一个适用于laravel和lumen框架的个推push推送服务包",
     "type": "library",
     "require": {
@@ -27,7 +27,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Shao ZeMing",
+            "name": "WYpeng",
             "email": "szm19920426@gmail.com"
         }
     ],
