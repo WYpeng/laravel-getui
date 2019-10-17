@@ -23,7 +23,6 @@ require_once(dirname(__FILE__) . '/' . 'igetui/utils/ApiUrlRespectUtils.php');
 require_once(dirname(__FILE__) . '/' . 'igetui/utils/LangUtils.php');
 require_once(dirname(__FILE__) . '/' . 'exception/GtException.php');
 require_once(dirname(__FILE__) . '/' . 'exception/RequestException.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/template/IGtTransmissionTemplate');
 
 
 
