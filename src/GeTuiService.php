@@ -133,7 +133,7 @@ class GeTuiService implements PushInterface
         $message->setTitle($data['title']);
         $title = $message->getTitle();
         $transContent = $function($data);
-        $intent = isset($data['intent']) ?? '';
+        $intent = isset($data['intent']) ? $data['intent'] : '';
 
         if (is_array($deviceId)) {
             $result = $this->pushMessageToList($deviceId, $transContent, $content, $title, $isNotice, $shortUrl);
