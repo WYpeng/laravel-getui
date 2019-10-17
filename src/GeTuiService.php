@@ -434,7 +434,19 @@ class GeTuiService implements PushInterface
     //透传模板
     function IGtStartActivityTemplateDemo($content, $title, $intent, $payload)
     {
-        $template = new \IGtTransmissionTemplate();
+        $template = new \IGtStartActivityTemplate();
+        $template->set_appId($this->gt_appid);//应用appid
+        $template->set_appkey($this->gt_appkey);//应用appkey
+        $template->set_intent($intent);
+        $template->set_title($title);//通知栏标题
+        $template->set_text($content);//通知栏内容
+        $template->set_logo("");//通知栏logo
+        $template->set_isRing(true);//是否响铃
+        $template->set_isVibrate(true);//是否震动
+        $template->set_isClearable(true);//通知栏是否可清除
+        //$template->set_duration(BEGINTIME,ENDTIME); //设置ANDROID客户端在此时间区间内展示消息
+        return $template;
+        /*$template = new \IGtTransmissionTemplate();
         $template->set_appId($this->gt_appid);//应用appid
         $template->set_appkey($this->gt_appkey);//应用appkey
         $template->set_transmissionType(1);//透传消息类型
@@ -445,7 +457,7 @@ class GeTuiService implements PushInterface
         $notify->set_intent($intent);
         $notify->set_type(\NotifyInfo_Type::_intent);
         $template->set3rdNotifyInfo($notify);
-        return $template;
+        return $template;*/
     }
 
 
