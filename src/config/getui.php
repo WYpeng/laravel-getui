@@ -1,7 +1,7 @@
 <?php
 return [
     // APP_EVN
-    'app_env' => getenv('APP_ENV') == 'production' ? 'production' : 'development',
+    'app_env' => env('APP_ENV') == 'production' ? 'production' : 'development',
 
     // The default default_client name which configured in `development` or `production` section
     'default_client' => 'client_1',
