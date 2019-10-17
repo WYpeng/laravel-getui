@@ -418,7 +418,7 @@ class GeTuiService implements PushInterface
         $template = new \IGtNotificationTemplate();
         $template->set_appId($this->gt_appid);//应用appid
         $template->set_appkey($this->gt_appkey);//应用appkey
-        $template->set_transmissionType(2);//透传消息类型
+        $template->set_transmissionType(1);//透传消息类型
         $template->set_transmissionContent($transContent);//透传内容
         $template->set_title($title);//通知栏标题
         $template->set_text($content);//通知栏内容
@@ -436,7 +436,6 @@ class GeTuiService implements PushInterface
         $template = new \IGtStartActivityTemplate();
         $template->set_appId($this->gt_appid);//应用appid
         $template->set_appkey($this->gt_appkey);//应用appkey
-        $template->set_transmissionType(1);//透传消息类型
         $template->set_intent($intent);
         $template->set_title($title);//通知栏标题
         $template->set_text($content);//通知栏内容
