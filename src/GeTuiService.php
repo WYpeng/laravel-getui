@@ -134,13 +134,12 @@ class GeTuiService implements PushInterface
         $title = $message->getTitle();
         $transContent = $function($data);
         $intent = isset($data['intent']) ? $data['intent'] : '';
-        $payload = isset($data['payload']) ? $data['payload'] : '';
 
         if (is_array($deviceId)) {
             $result = $this->pushMessageToList($deviceId, $transContent, $content, $title, $isNotice, $shortUrl);
 
         } else {
-            $result = $this->pushMessageToSingle($deviceId, $transContent, $content, $title, $isNotice, $shortUrl, $intent, $payload);
+            $result = $this->pushMessageToSingle($deviceId, $transContent, $content, $title, $isNotice, $shortUrl, $intent);
 
         }
         return $result;
@@ -193,10 +192,10 @@ class GeTuiService implements PushInterface
 //
 
 //单推接口案例
-    function pushMessageToSingle($clientId, $transContent, $content, $title, $isNotice = true, $shortUrl = '', $intent = '', $payload = '')
+    function pushMessageToSingle($clientId, $transContent, $content, $title, $isNotice = true, $shortUrl = '', $intent = '')
     {
         //消息模版：
-        $template = $this->getTemplate($content, $title, $transContent, $isNotice, $shortUrl, $intent, $payload);
+        $template = $this->getTemplate($content, $title, $transContent, $isNotice, $shortUrl, $intent);
         //个推信息体
         $message = new \IGtSingleMessage();
         $message->set_isOffline(true);//是否离线
@@ -300,7 +299,7 @@ class GeTuiService implements PushInterface
     }
 
 
-    protected function getTemplate($content, $title, $transContent, $isNotice = true, $shortUrl = '', $intent = '', $payload = '')
+    protected function getTemplate($content, $title, $transContent, $isNotice = true, $shortUrl = '', $intent = '')
     {
 //        switch ($type) {
 //            case self::ALL:
@@ -315,7 +314,7 @@ class GeTuiService implements PushInterface
 
         if ($isNotice) {
             if (empty($intent)) return $this->IGtNotificationTemplateDemo($content, $title, $transContent);
-            return $this->IGtStartActivityTemplateDemo($content, $title, $intent, $payload);
+            return $this->IGtStartActivityTemplateDemo($content, $title, $intent);
         }
         return $this->IGtTransmissionTemplateDemo($content, $title, $transContent);
     }
@@ -432,7 +431,7 @@ class GeTuiService implements PushInterface
     }
 
     //透传模板
-    function IGtStartActivityTemplateDemo($content, $title, $intent, $payload)
+    function IGtStartActivityTemplateDemo($content, $title, $intent)
     {
         $template = new \IGtStartActivityTemplate();
         $template->set_appId($this->gt_appid);//应用appid
@@ -446,18 +445,6 @@ class GeTuiService implements PushInterface
         $template->set_isClearable(true);//通知栏是否可清除
         //$template->set_duration(BEGINTIME,ENDTIME); //设置ANDROID客户端在此时间区间内展示消息
         return $template;
-        /*$template = new \IGtTransmissionTemplate();
-        $template->set_appId($this->gt_appid);//应用appid
-        $template->set_appkey($this->gt_appkey);//应用appkey
-        $template->set_transmissionType(1);//透传消息类型
-        $template->set_transmissionContent($payload);//消息内容
-        $notify = new \IGtNotify();
-        $notify->set_title($title);
-        $notify->set_content($content);
-        $notify->set_intent($intent);
-        $notify->set_type(\NotifyInfo_Type::_intent);
-        $template->set3rdNotifyInfo($notify);
-        return $template;*/
     }
 
 
