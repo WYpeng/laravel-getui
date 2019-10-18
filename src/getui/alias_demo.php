@@ -3,7 +3,7 @@
 //增加ClientId可自定义别名功能
 
 
-header("Content-Type: text/html; charset=utf-8");
+//header("Content-Type: text/html; charset=utf-8");
 
 require_once(dirname(__FILE__) . '/' . 'IGt.Push.php');
 
